@@ -1,0 +1,1 @@
+# funciones-polinomicas-dos
