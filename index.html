@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Funciones de cuarto grado, paso a paso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf9ff;--card:#fff;--ink:#1b1740;--muted:#6a6788;--line:#e6e3f5;--main:#6240ff;--main2:#efeaff;--teal:#0fa58a;--teal2:#dff6f0;--pink:#ff4f8b;--pink2:#ffe8f0;--sun:#ffd166;--sun2:#fff4d6;--grid:#ece9f8;--axis:#8a86a8;--good:#dff6f0;--bad:#ffe8f0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#13112a;--card:#1c1a3a;--ink:#f1efff;--muted:#a29fc4;--line:#2e2b57;--main:#9a82ff;--main2:#2a2459;--teal:#3ddbb8;--teal2:#12322f;--pink:#ff7aa8;--pink2:#3a1c2e;--sun:#ffc861;--sun2:#3a2f17;--grid:#2a2750;--axis:#8f8bb5;--good:#12322f;--bad:#3a1c2e}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#13112a;--card:#1c1a3a;--ink:#f1efff;--muted:#a29fc4;--line:#2e2b57;--main:#9a82ff;--main2:#2a2459;--teal:#3ddbb8;--teal2:#12322f;--pink:#ff7aa8;--pink2:#3a1c2e;--sun:#ffc861;--sun2:#3a2f17;--grid:#2a2750;--axis:#8f8bb5;--good:#12322f;--bad:#3a1c2e}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.75 "Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap,.prog,nav,main,footer{max-width:720px;margin-left:auto;margin-right:auto;padding-left:20px;padding-right:20px}
+header{background:var(--main2);padding:60px 0 56px}
+.tag{display:inline-block;font-size:.78rem;font-weight:700;color:var(--main);background:var(--card);padding:5px 14px;border-radius:99px}
+h1{font-weight:800;font-size:clamp(2.1rem,6.5vw,3.3rem);line-height:1.1;letter-spacing:-.035em;margin:20px 0 16px}
+mark{color:inherit;background:linear-gradient(transparent 60%,var(--sun) 60%)}
+header p{color:var(--muted);font-size:1.1rem;margin:0;max-width:540px}
+.prog{margin-top:24px}.progbox div:first-child{display:flex;justify-content:space-between;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:8px}
+.bar{height:6px;background:var(--line);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--main),var(--pink));border-radius:9px;transition:width .3s}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+nav a{text-decoration:none;color:var(--ink);font-size:.85rem;font-weight:600;padding:6px 14px;border-radius:99px;background:var(--card);border:1px solid var(--line)}nav a:hover{background:var(--main2);border-color:var(--main);color:var(--main)}
+main{margin-top:20px}
+.card{--c:var(--main);background:var(--card);border:1px solid var(--line);border-radius:22px;padding:clamp(22px,4vw,38px);margin-bottom:20px}
+.card:nth-child(3n+2){--c:var(--teal)}.card:nth-child(3n){--c:var(--pink)}
+.num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--c);color:var(--card);font-weight:800;font-size:1rem;margin-bottom:12px}
+h2{font-weight:800;font-size:clamp(1.5rem,4vw,1.9rem);line-height:1.2;letter-spacing:-.025em;margin:0 0 14px}
+h3{font-weight:700;font-size:1.1rem;margin:28px 0 6px}
+p{margin:.8rem 0}ul{padding-left:1.2rem}li{margin:.55rem 0}
+.math{font:1.3rem Cambria,"Cambria Math",Georgia,serif;text-align:center;background:var(--main2);padding:16px 10px;margin:20px 0;border-radius:14px;overflow-wrap:anywhere}
+.box{border-radius:14px;padding:14px 18px;margin:22px 0}.box p{margin:.3rem 0}
+.box b.t{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;font-weight:800;margin-bottom:2px}
+.life{background:var(--teal2)}.life b.t{color:var(--teal)}.rem{background:var(--sun2)}.rem b.t{color:var(--ink);opacity:.7}.key{background:var(--main2)}.key b.t{color:var(--main)}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;margin:16px 0;font-size:.95rem}th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:center}th{background:var(--main2);color:var(--main);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700}td:first-child,th:first-child{text-align:left}
+button{border:0;border-radius:12px;padding:11px 20px;background:var(--main);color:var(--card);font:700 .95rem "Plus Jakarta Sans",system-ui,sans-serif;cursor:pointer;margin:6px 8px 0 0}
+button:hover{filter:brightness(.92)}button.sec{background:var(--main2);color:var(--main)}button.mark{background:var(--teal2);color:var(--teal);margin-top:22px}button.mark.done{background:var(--teal);color:var(--card)}
+button:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--main);outline-offset:2px}
+.ex{border:1.5px solid var(--line);border-radius:16px;padding:20px;margin:24px 0}.ex>p:first-child{margin-top:0;font-weight:700}
+.opts{display:grid;gap:8px;margin:12px 0}.opts label{border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer}.opts label:hover{background:var(--main2)}.opts label:has(input:checked){border-color:var(--main);background:var(--main2)}
+.fb{display:none;margin-top:12px;padding:10px 14px;border-radius:10px;font-size:.95rem;font-weight:600}.fb.show{display:block}.fb.good{background:var(--good)}.fb.bad{background:var(--bad)}
+details{border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;margin-top:10px}summary{font-weight:700;cursor:pointer;color:var(--main)}
+.graph{border:1.5px solid var(--line);border-radius:16px;padding:10px;margin:18px 0}canvas{width:100%;height:320px;display:block}.small{color:var(--muted);font-size:.88rem;margin:.4rem 0 0}
+.steps{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin:18px 0}.steps div{background:var(--main2);border-radius:14px;padding:12px;text-align:center;font-size:.95rem;font-weight:600}.steps span{display:block;font-size:1.7rem;font-weight:800;color:var(--main)}
+.evq{font-weight:700;font-size:1.15rem;margin:20px 0 12px}.big{font-size:4rem;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--main);margin:4px 0 12px}
+.rv{border-left:4px solid;border-radius:4px;padding:4px 0 4px 16px;margin:20px 0}.rv.good{border-color:var(--teal)}.rv.bad{border-color:var(--pink)}.rv p{margin:.3rem 0}.rt{font-weight:700}
+footer{padding-top:8px;padding-bottom:48px;color:var(--muted);font-size:.85rem;text-align:center}
+.sl{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:6px 22px}.sl label{display:flex;align-items:center;gap:10px;font-weight:700}.sl input{flex:1;accent-color:var(--main)}.sl output{width:2.6em;text-align:right;color:var(--muted);font-weight:600}
+@media print{nav,.prog,button{display:none!important}header{background:#fff;padding:10px 0}.card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<span class="tag">Matemáticas · Bachillerato para adultos</span>
+<h1>Funciones de <mark>cuarto grado</mark>, paso a paso</h1>
+<p>La continuación de las de tercer grado. Si hace tiempo que no estudiás, no pasa nada: repasamos todo lo necesario con ejemplos de todos los días.</p>
+</div></header>
+<div class="prog"><div class="progbox"><div><span>Tu recorrido</span><span id="pt">0 de 6 apartados</span></div><div class="bar"><i id="pb"></i></div></div></div>
+<nav aria-label="Índice"><a href="#inicio">1. Qué es</a><a href="#grado">2. El grado</a><a href="#imagenes">3. Calcular</a><a href="#grafica">4. La gráfica</a><a href="#raices">5. Las raíces</a><a href="#practica">6. Practicá</a><a href="#evaluacion">7. Evaluación</a></nav>
+<main>
+<section class="card" id="inicio">
+<span class="num">1</span>
+<h2>¿Qué significa «cuarto grado»?</h2>
+<p>Una <b>función</b> es una máquina: entra un número (<b>x</b>), se hacen unas cuentas y sale otro, que se escribe <b>f(x)</b> y se lee «f de x». En las de <b>cuarto grado</b>, la potencia más alta de x es 4.</p>
+<div class="box rem"><b class="t">Para recordar</b><p><b>x⁴ = x · x · x · x</b>. Por ejemplo, 2⁴ = 2 · 2 · 2 · 2 = 16.</p></div>
+<div class="math">f(x) = ax⁴ + bx³ + cx² + dx + e &nbsp; (a ≠ 0)</div>
+<p>Las letras <i>a, b, c, d, e</i> son números que acompañan a cada parte. El número <i>a</i> no puede ser cero: si lo fuera, desaparecería el x⁴ y ya no sería de cuarto grado.</p>
+<p>Fijate cómo crecen las potencias cuando x aumenta:</p>
+<div class="tw"><table><thead><tr><th>x</th><th>x²</th><th>x³</th><th>x⁴</th></tr></thead><tbody><tr><td>2</td><td>4</td><td>8</td><td>16</td></tr><tr><td>3</td><td>9</td><td>27</td><td>81</td></tr><tr><td>10</td><td>100</td><td>1.000</td><td>10.000</td></tr></tbody></table></div>
+<div class="box life"><b class="t">En la vida diaria</b><p>Un objeto caliente irradia energía en proporción a su temperatura (absoluta) elevada a la cuarta. Si la temperatura se duplica, la energía se multiplica por <b>16</b>. Por eso una hornalla al rojo calienta muchísimo más que una apenas tibia.</p></div>
+<button class="mark" data-s="inicio">Marcar como leído</button>
+</section>
+
+<section class="card" id="grado">
+<span class="num">2</span>
+<h2>Cómo reconocer el grado</h2>
+<p>Mirá todas las potencias de x y quedate con la <b>más grande</b>. No importa cuántos términos haya.</p>
+<div class="tw"><table><thead><tr><th>Función</th><th>Grado</th><th>¿Por qué?</th></tr></thead><tbody>
+<tr><td>f(x) = 3x² − 1</td><td>2</td><td>Lo más alto es x²</td></tr>
+<tr><td>g(x) = x³ + 2x</td><td>3</td><td>Lo más alto es x³</td></tr>
+<tr><td>h(x) = x⁴ − 5x² + 4</td><td>4</td><td>Lo más alto es x⁴</td></tr>
+<tr><td>p(x) = −2x⁴ + x³ − 7</td><td>4</td><td>Lo más alto es x⁴</td></tr>
+<tr><td>q(x) = x⁵ − x</td><td>5</td><td>Lo más alto es x⁵</td></tr>
+</tbody></table></div>
+<div class="box key"><b class="t">Idea clave</b><p>El grado lo marca la potencia más alta, no la cantidad de términos. Fijate que h(x) no tiene término en x³ ni en x, y aun así es de cuarto grado.</p></div>
+<div class="ex" data-n="grado"><p>Ponete a prueba: ¿cuál es de cuarto grado?</p>
+<div class="opts"><label><input type="radio" name="grado" value="a"> f(x) = 3x³ − x + 1</label><label><input type="radio" name="grado" value="b"> g(x) = 2x⁴ − 5x + 1</label><label><input type="radio" name="grado" value="c"> h(x) = x⁵ + 2</label></div>
+<button class="chk" data-a="b">Comprobar</button><div class="fb"></div></div>
+<button class="mark" data-s="grado">Marcar como leído</button>
+</section>
+
+<section class="card" id="imagenes">
+<span class="num">3</span>
+<h2>Calcular el resultado de la máquina</h2>
+<p>«Calcular la imagen» es <b>cambiar la x por un número y hacer las cuentas</b>, siempre en este orden:</p>
+<div class="steps"><div><span>1</span>Paréntesis</div><div><span>2</span>Potencias</div><div><span>3</span>Multiplicar y dividir</div><div><span>4</span>Sumar y restar</div></div>
+<p>Ejemplo: con <b>f(x) = x⁴ − 3x² + 2</b>, calculamos f(2):</p>
+<div class="math">f(2) = 2⁴ − 3 · 2² + 2<br>f(2) = 16 − 12 + 2 = <b>6</b></div>
+<div class="box rem"><b class="t">Cuidado con los negativos</b><p>Con exponente <b>par</b>, el resultado es positivo: (−2)⁴ = 16. Con exponente <b>impar</b>, sigue negativo: (−2)³ = −8. Es porque los negativos se cancelan de a pares.</p></div>
+<div class="box life"><b class="t">En la vida diaria</b><p>Es como una receta o una factura: metés un dato y las cuentas te dan el total. La función es la fórmula que siempre se repite.</p></div>
+<div class="ex" data-n="imagen"><p>Si f(x) = x⁴ − 2x² + 1, ¿cuánto vale f(2)?</p>
+<div class="opts"><label><input type="radio" name="imagen" value="a"> 9</label><label><input type="radio" name="imagen" value="b"> 7</label><label><input type="radio" name="imagen" value="c"> 17</label></div>
+<button class="chk" data-a="a">Comprobar</button><div class="fb"></div></div>
+<button class="mark" data-s="imagenes">Marcar como leído</button>
+</section>
+
+<section class="card" id="grafica">
+<span class="num">4</span>
+<h2>Dibujar la función</h2>
+<p>Calculamos varios valores, marcamos los puntos y los unimos con una curva suave. Probemos con <b>f(x) = x⁴ − 5x² + 4</b>:</p>
+<div class="tw"><table><thead><tr><th>x</th><th>−2</th><th>−1</th><th>0</th><th>1</th><th>2</th></tr></thead><tbody><tr><td>f(x)</td><td>0</td><td>0</td><td>4</td><td>0</td><td>0</td></tr></tbody></table></div>
+<div class="graph"><canvas id="g" role="img" aria-label="Gráfica de f(x) = x a la cuarta menos 5x al cuadrado más 4, con forma de W"></canvas><p class="small">Los puntos son los de la tabla; la curva pasa por todos ellos.</p></div>
+<div class="box life"><b class="t">En la vida diaria</b><p>Pensá en una ruta con <b>dos valles</b> y una <b>cima</b> en el medio: baja, sube, vuelve a bajar y termina subiendo. Tiene forma de <b>W</b>.</p></div>
+<div class="box key"><b class="t">Dos datos útiles</b><p><b>Eje vertical:</b> la curva corta en f(0), que es el número <b>e</b> (el que está solo, sin x). Acá e = 4.</p><p><b>Simetría:</b> en este ejemplo, el lado izquierdo es un espejo del derecho: f(−3) = f(3) = 40. Pasa porque solo hay potencias pares. No todas las de cuarto grado son simétricas.</p></div>
+<h3>Probalo vos: mové los números</h3>
+<p>Cambiá a, b, c, d y e con los deslizadores y mirá cómo se transforma la curva.</p>
+<div class="graph"><canvas id="g2" role="img" aria-label="Gráfica de f(x) = ax⁴ + bx³ + cx² + dx + e, con valores que se pueden cambiar"></canvas>
+<div class="math" id="fx2" style="margin:10px 0"></div>
+<div class="sl">
+<label>a <input type="range" id="sa" min="-2" max="2" step="0.5" value="1"><output id="oa"></output></label>
+<label>b <input type="range" id="sb" min="-2" max="2" step="0.5" value="0"><output id="ob"></output></label>
+<label>c <input type="range" id="sc" min="-6" max="6" step="0.5" value="-5"><output id="oc"></output></label>
+<label>d <input type="range" id="sd" min="-6" max="6" step="0.5" value="0"><output id="od"></output></label>
+<label>e <input type="range" id="se" min="-6" max="6" step="0.5" value="4"><output id="oe"></output></label>
+</div>
+<p class="small" id="n2"></p></div>
+<button class="mark" data-s="grafica">Marcar como leído</button>
+</section>
+
+<section class="card" id="raices">
+<span class="num">5</span>
+<h2>Las raíces: cuando el resultado es cero</h2>
+<p>Las raíces son los valores de x que hacen que <b>f(x) = 0</b>. En la gráfica, son los puntos donde la curva <b>cruza o toca el eje horizontal</b>.</p>
+<div class="box life"><b class="t">En la vida diaria</b><p>En la ruta de los dos valles, las raíces son los lugares donde pasás justo por el nivel del mar. Puede ser que pases 4 veces, o que nunca llegues a tocarlo.</p></div>
+<div class="box key"><b class="t">¿Cuántas raíces puede tener?</b><p>De <b>0 a 4</b>. Por ejemplo: x⁴ + 1 no tiene ninguna, x⁴ tiene una (x = 0), x⁴ − 1 tiene dos (1 y −1) y x⁴ − 5x² + 4 tiene cuatro.</p></div>
+<div class="box rem"><b class="t">Para recordar</b><p><b>Diferencia de cuadrados:</b> a² − b² = (a − b)(a + b).</p><p><b>Producto igual a cero:</b> si varios números se multiplican y da cero, alguno vale cero.</p></div>
+<h3>Ejemplo 1: x⁴ − 16</h3>
+<p>Como x⁴ = (x²)² y 16 = 4², es una diferencia de cuadrados:</p>
+<div class="math">x⁴ − 16 = (x² − 4)(x² + 4) = (x − 2)(x + 2)(x² + 4)</div>
+<p>Los dos primeros factores dan x = 2 y x = −2. El último, x² + 4, nunca vale cero (un cuadrado más 4 siempre es positivo). Entonces las raíces son <b>2 y −2</b>.</p>
+<h3>Ejemplo 2: x⁴ − 5x² + 4 (el truco del cambio)</h3>
+<p>Solo tiene x⁴ y x². Escribimos <b>t = x²</b>, y entonces x⁴ = t²:</p>
+<div class="math">t² − 5t + 4 = 0 &nbsp;→&nbsp; (t − 1)(t − 4) = 0 &nbsp;→&nbsp; t = 1 &nbsp;o&nbsp; t = 4</div>
+<p>(Buscamos dos números que multiplicados den 4 y sumados den −5: son −1 y −4.) Ahora volvemos a x, porque t = x²:</p>
+<div class="math">x² = 1 → x = 1 o x = −1 &nbsp;·&nbsp; x² = 4 → x = 2 o x = −2</div>
+<p>Las cuatro raíces son <b>−2, −1, 1 y 2</b>, justo los puntos donde la curva W cruza el eje.</p>
+<div class="box rem"><b class="t">Ojo</b><p>No todas se resuelven tan fácil. Acá usamos ejemplos pensados para ver bien el procedimiento.</p></div>
+<div class="ex" data-n="raiz"><p>¿Cuál es una raíz de f(x) = x⁴ − 16?</p>
+<div class="opts"><label><input type="radio" name="raiz" value="a"> x = 2</label><label><input type="radio" name="raiz" value="b"> x = 4</label><label><input type="radio" name="raiz" value="c"> x = 8</label></div>
+<button class="chk" data-a="a">Comprobar</button><div class="fb"></div></div>
+<button class="mark" data-s="raices">Marcar como leído</button>
+</section>
+
+<section class="card" id="practica">
+<span class="num">6</span>
+<h2>Practicá a tu ritmo</h2>
+<p>Intentá cada ejercicio en tu cuaderno y después mirá la solución. Equivocarse también es aprender.</p>
+<div class="ex"><p>1. ¿Cuál es el grado de p(x) = −3x⁴ + x² − 7?</p><details><summary>Ver solución</summary><p>Grado 4: la mayor potencia de x es x⁴.</p></details></div>
+<div class="ex"><p>2. Calculá f(−2) si f(x) = x⁴ − 2x³ + 1.</p><details><summary>Ver solución</summary><p>f(−2) = (−2)⁴ − 2 · (−2)³ + 1 = 16 − 2 · (−8) + 1 = 16 + 16 + 1 = <b>33</b>.</p></details></div>
+<div class="ex"><p>3. Hallá las raíces de f(x) = x⁴ − 9x².</p><details><summary>Ver solución</summary><p>Sacamos factor común: x²(x² − 9) = 0. De x² = 0 sale x = 0. Y x² − 9 = (x − 3)(x + 3) da x = 3 y x = −3.<br>Raíces: <b>−3, 0 y 3</b>.</p></details></div>
+<div class="ex"><p>4. Hallá las raíces de f(x) = x⁴ − 10x² + 9 con el cambio t = x².</p><details><summary>Ver solución</summary><p>t² − 10t + 9 = 0 → (t − 1)(t − 9) = 0 → t = 1 o t = 9. Entonces x² = 1 da x = ±1 y x² = 9 da x = ±3.<br>Raíces: <b>−3, −1, 1 y 3</b>.</p></details></div>
+<div class="ex"><p>5. Explicá con tus palabras por qué f(x) = x⁴ + 1 no tiene raíces.</p><details><summary>Ver una respuesta posible</summary><p>Porque x⁴ nunca es negativo, así que x⁴ + 1 siempre es 1 o más. Nunca llega a cero, y la curva no toca el eje horizontal.</p></details></div>
+<button class="sec" onclick="window.print()">Imprimir o guardar en PDF</button>
+</section>
+
+<section class="card" id="resumen">
+<h2>Lo que te llevás</h2>
+<ul>
+<li>Cuarto grado: <b>f(x) = ax⁴ + bx³ + cx² + dx + e</b>, con a distinto de 0.</li>
+<li>El grado es la <b>potencia más alta</b> de x.</li>
+<li>Para calcular un resultado: cambiá x por el número y respetá el orden de las operaciones. Con exponente par, el negativo se vuelve positivo.</li>
+<li>Si <b>a</b> es positivo, los dos extremos de la curva suben; si es negativo, bajan.</li>
+<li>La curva corta el eje vertical en <b>f(0) = e</b>.</li>
+<li>Las raíces son los x donde <b>f(x) = 0</b>. Puede haber de 0 a 4.</li>
+<li>Si solo hay x⁴ y x², el cambio <b>t = x²</b> convierte el problema en uno de segundo grado.</li>
+</ul>
+<div class="box key"><b class="t">Avanzaste un montón</b><p>Si podés reconocer el grado, calcular un valor y explicar qué es una raíz, ya dominás lo esencial. ¡Buen trabajo!</p></div>
+<button class="mark" data-s="resumen">Marcar como leído</button>
+<button class="sec" id="reset">Reiniciar progreso</button>
+</section>
+
+<section class="card" id="evaluacion">
+<span class="num">7</span>
+<h2>Evaluación final</h2>
+<div id="evIntro">
+<p>Llegó el momento de ver cuánto aprendiste. Son <b>10 preguntas de opción múltiple</b>, elegidas al azar de un banco de 26. No hay límite de tiempo y no pasa nada si te equivocás: al final vas a ver tu resultado y cuáles conviene repasar.</p>
+<p>Si la repetís, te van a tocar preguntas distintas.</p>
+<button id="evStart">Empezar la evaluación</button>
+</div>
+<div id="evQ" hidden>
+<p class="small" id="evCount"></p>
+<div class="bar"><i id="evBar"></i></div>
+<p class="evq" id="evText"></p>
+<div class="opts" id="evOpts"></div>
+<button id="evNext" disabled>Siguiente</button>
+</div>
+<div id="evRes" hidden>
+<p class="small">Tu resultado</p>
+<div class="big" id="evScore"></div>
+<p id="evMsg"></p>
+<h3>Repasemos tus respuestas</h3>
+<div id="evReview"></div>
+<button id="evAgain">Repetir con otras preguntas</button>
+<button class="sec" onclick="window.print()">Imprimir resultado</button>
+</div>
+</section>
+</main>
+<footer>Material de estudio introductorio para aprender a tu ritmo.</footer>
+<script>
+const MSG={grado:["¡Correcto! Es la única con x⁴ como potencia más alta.","Casi. Buscá la expresión cuya potencia más alta sea x⁴."],imagen:["¡Correcto! f(2) = 16 − 8 + 1 = 9.","Cambiá x por 2: 2⁴ − 2 · 2² + 1. Empezá por las potencias."],raiz:["¡Correcto! f(2) = 16 − 16 = 0.","Probá cada opción en x⁴ − 16: una raíz da cero."]};
+document.querySelectorAll(".chk").forEach(b=>b.onclick=()=>{
+ const ex=b.closest(".ex"),n=ex.dataset.n,sel=ex.querySelector("input:checked"),fb=ex.querySelector(".fb");
+ fb.className="fb show";
+ if(!sel){fb.classList.add("bad");fb.textContent="Elegí una respuesta primero.";return}
+ const ok=sel.value===b.dataset.a;fb.classList.add(ok?"good":"bad");fb.textContent=MSG[n][ok?0:1];
+});
+const done=new Set();
+function up(){document.getElementById("pt").textContent=done.size+" de 6 apartados";document.getElementById("pb").style.width=done.size/6*100+"%"}
+document.querySelectorAll(".mark").forEach(b=>b.onclick=()=>{
+ const s=b.dataset.s;
+ if(done.has(s)){done.delete(s);b.textContent="Marcar como leído";b.classList.remove("done")}
+ else{done.add(s);b.textContent="✓ Leído";b.classList.add("done")}
+ up();
+});
+document.getElementById("reset").onclick=()=>{done.clear();document.querySelectorAll(".mark").forEach(b=>{b.textContent="Marcar como leído";b.classList.remove("done")});up()};
+const BANK=[
+["¿Cuál es el grado de f(x) = 3x⁴ − x² + 5?",["2","3","4","5"],2,"La potencia más alta de x es x⁴, entonces el grado es 4."],
+["¿Cuál de estas funciones es de cuarto grado?",["f(x) = x³ + 4x²","g(x) = 5x⁴ − x","h(x) = x⁵ − x⁴"],1,"Solo g(x) tiene x⁴ como potencia más alta. f es de grado 3 y h es de grado 5."],
+["En f(x) = ax⁴ + bx³ + cx² + dx + e, ¿por qué a no puede ser cero?",["Porque desaparecería el término x⁴ y bajaría el grado","Porque la función no tendría raíces","Porque no se podría dibujar la gráfica","Porque entonces e valdría cero"],0,"Si a fuera 0, el término x⁴ desaparece y la función ya no sería de cuarto grado."],
+["¿Qué determina el grado de una función polinómica?",["La cantidad de términos","La potencia más alta de x","El primer número que aparece","El valor de e"],1,"El grado lo marca la potencia más alta de x, no la cantidad de términos."],
+["¿Cuánto es 2⁴?",["8","16","24","6"],1,"2⁴ = 2 · 2 · 2 · 2 = 16."],
+["¿Cuánto es (−2)⁴?",["−16","16","−8","8"],1,"(−2) · (−2) · (−2) · (−2) = 16: los negativos se cancelan de a pares."],
+["¿Por qué (−3)⁴ da un número positivo?",["Porque los negativos se cancelan de a pares","Porque 3 es impar","Porque el exponente siempre cambia el signo","En realidad da negativo"],0,"Con exponente par, los signos negativos se cancelan de a pares: (−3)⁴ = 81."],
+["Si x se duplica, ¿por cuánto se multiplica x⁴?",["4","8","16","32"],2,"(2x)⁴ = 16x⁴, es decir, 16 veces más."],
+["Al hacer una cuenta, ¿qué se resuelve primero?",["Las sumas","Lo que está entre paréntesis","Las restas","Las multiplicaciones"],1,"Primero los paréntesis, después las potencias, luego multiplicaciones y divisiones, y al final sumas y restas."],
+["Si f(x) = x⁴ − 2x, ¿cuánto vale f(2)?",["12","8","20","14"],0,"f(2) = 2⁴ − 2 · 2 = 16 − 4 = 12."],
+["Si f(x) = x⁴ − 3x² + 2, ¿cuánto vale f(−1)?",["0","2","−2","6"],0,"f(−1) = 1 − 3 + 2 = 0. Entonces −1 es una raíz."],
+["Si f(x) = 2x⁴ − x³, ¿cuánto vale f(−1)?",["1","3","−3","−1"],1,"f(−1) = 2 · 1 − (−1) = 2 + 1 = 3."],
+["¿Qué es una raíz de una función?",["Un valor de x para el que f(x) = 0","El valor de f(0)","El mayor número de la tabla","El valor de a"],0,"Las raíces son los valores de x que hacen que el resultado sea cero."],
+["En la gráfica, las raíces se ven donde la curva...",["Cruza o toca el eje horizontal (eje X)","Cruza el eje vertical (eje Y)","Llega a su punto más alto","Sale del gráfico"],0,"Ahí f(x) = 0, o sea que la altura es cero: justo sobre el eje X."],
+["¿Cuáles son las raíces de f(x) = x⁴ − 16?",["x = 2 y x = −2","x = 4 y x = −4","x = 2, −2, 4 y −4","No tiene raíces"],0,"x⁴ − 16 = (x − 2)(x + 2)(x² + 4). El último factor nunca es cero."],
+["¿Cuáles son las raíces de f(x) = x⁴ − 5x² + 4?",["−2, −1, 1 y 2","Solo 1 y 4","Solo 4 y 5","No tiene raíces"],0,"Con t = x²: t² − 5t + 4 = 0 da t = 1 o t = 4, y de ahí x = ±1 y x = ±2."],
+["Para resolver x⁴ − 10x² + 9 = 0 usamos t = x². ¿Qué ecuación queda?",["t² − 10t + 9 = 0","t⁴ − 10t² + 9 = 0","t − 10 + 9 = 0","2t − 10t + 9 = 0"],0,"Como x⁴ = (x²)² = t², queda t² − 10t + 9 = 0."],
+["¿Cuántas raíces puede tener como máximo una función de cuarto grado?",["2","3","4","5"],2,"Puede tener 0, 1, 2, 3 o 4 raíces, pero nunca más de 4."],
+["¿Cuál de estas funciones no tiene raíces?",["f(x) = x⁴","g(x) = x⁴ − 1","h(x) = x⁴ + 1","k(x) = x⁴ − x²"],2,"x⁴ nunca es negativo, entonces x⁴ + 1 siempre es 1 o más y nunca vale 0."],
+["¿Dónde corta el eje vertical la gráfica de f(x) = x⁴ − 3x + 7?",["En y = 7","En y = −3","En x = 7","En y = 0"],0,"Corta en f(0) = e, el número que está solo: 7."],
+["Si a es positivo, ¿cómo son los dos extremos de la gráfica?",["Los dos suben","Uno sube y el otro baja","Los dos bajan","Quedan horizontales"],0,"Con a positivo los dos extremos suben; con a negativo, los dos bajan."],
+["Si a es negativo, ¿cómo terminan los extremos de la gráfica?",["Los dos bajan","Los dos suben","Uno sube y el otro baja","Se juntan en un punto"],0,"Con a negativo los dos extremos bajan."],
+["La gráfica de f(x) = x⁴ − 5x² + 4 tiene forma de:",["W","S","U simple","Recta"],0,"Baja hasta un valle, sube a una cima, baja a otro valle y vuelve a subir: una W."],
+["En f(x) = x⁴ − 5x² + 4, ¿cómo es f(−3) comparado con f(3)?",["Igual: los dos valen 40","Opuesto: −40","La mitad","No se puede calcular"],0,"Solo hay potencias pares, entonces f(−3) = f(3) = 81 − 45 + 4 = 40."],
+["¿Cuántos valles tiene la W de f(x) = x⁴ − 5x² + 4?",["1","2","3","4"],1,"Tiene dos valles, uno a cada lado, y una cima en el medio."],
+["Al factorizar x⁴ − 1 como diferencia de cuadrados, el primer paso es:",["(x² − 1)(x² + 1)","(x − 1)(x + 1)","(x⁴ − 1)(x⁴ + 1)","x(x³ − 1)"],0,"Como x⁴ = (x²)² y 1 = 1², queda (x² − 1)(x² + 1)."]
+];
+const $=id=>document.getElementById(id);
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+let ev=[],ei=0,ans=[];
+function evStart(){
+ ev=shuf(BANK).slice(0,10).map(([q,o,c,e])=>({q,e,o:shuf(o.map((t,i)=>({t,ok:i===c})))}));
+ ei=0;ans=[];$("evIntro").hidden=true;$("evRes").hidden=true;$("evQ").hidden=false;evShow();
+ $("evaluacion").scrollIntoView({behavior:"smooth"});
+}
+function evShow(){
+ const q=ev[ei];
+ $("evCount").textContent="Pregunta "+(ei+1)+" de 10";
+ $("evBar").style.width=(ei/10*100)+"%";
+ $("evText").textContent=q.q;
+ const box=$("evOpts");box.innerHTML="";
+ q.o.forEach((o,i)=>{const l=document.createElement("label"),r=document.createElement("input");r.type="radio";r.name="evq";r.value=i;r.onchange=()=>{$("evNext").disabled=false};l.append(r," "+o.t);box.append(l)});
+ $("evNext").disabled=true;$("evNext").textContent=ei===9?"Ver resultado":"Siguiente";
+}
+function evEnd(){
+ $("evQ").hidden=true;$("evRes").hidden=false;
+ let n=0;const list=$("evReview");list.innerHTML="";
+ ev.forEach((q,i)=>{
+  const mine=q.o[ans[i]],ok=mine.ok;if(ok)n++;
+  const d=el("div","rv "+(ok?"good":"bad"));
+  d.append(el("p","rt",(i+1)+". "+q.q),el("p",null,(ok?"Correcta. ":"Incorrecta. ")+"Tu respuesta: "+mine.t));
+  if(!ok)d.append(el("p",null,"Respuesta correcta: "+q.o.find(o=>o.ok).t));
+  d.append(el("p","small",q.e));list.append(d);
+ });
+ $("evScore").textContent=n+" de 10";
+ $("evMsg").textContent=n>=9?"Excelente. Dominás lo esencial del tema.":n>=7?"Muy bien. Ya manejás casi todo; repasá los puntos que fallaste.":n>=5?"Vas por buen camino. Te conviene repasar las secciones donde tuviste errores y volver a intentar.":"Todavía hay cosas para afianzar, y es totalmente normal. Volvé a leer las secciones con calma, practicá y probá de nuevo.";
+ $("evaluacion").scrollIntoView({behavior:"smooth"});
+}
+$("evStart").onclick=evStart;$("evAgain").onclick=evStart;
+$("evNext").onclick=()=>{const s=document.querySelector('input[name="evq"]:checked');if(!s)return;ans.push(+s.value);if(ei<9){ei++;evShow()}else evEnd()};
+function plot(id,f,x0,x1,y0,y1,sx,sy,pts){
+ const c=$(id),r=c.getBoundingClientRect(),dp=devicePixelRatio||1;
+ c.width=r.width*dp;c.height=r.height*dp;const t=c.getContext("2d");t.scale(dp,dp);
+ const w=r.width,h=r.height,X=x=>(x-x0)/(x1-x0)*w,Y=y=>h-(y-y0)/(y1-y0)*h;
+ const S=getComputedStyle(document.documentElement),v=k=>S.getPropertyValue(k).trim();
+ t.font="12px 'Plus Jakarta Sans',system-ui";t.lineWidth=1;
+ for(let x=Math.ceil(x0/sx)*sx;x<=x1;x+=sx){t.strokeStyle=v("--grid");t.beginPath();t.moveTo(X(x),0);t.lineTo(X(x),h);t.stroke();if(x){t.fillStyle=v("--muted");t.fillText(x,X(x)-4,Y(0)+16)}}
+ for(let y=Math.ceil(y0/sy)*sy;y<=y1;y+=sy){t.strokeStyle=v("--grid");t.beginPath();t.moveTo(0,Y(y));t.lineTo(w,Y(y));t.stroke();if(y){t.fillStyle=v("--muted");t.fillText(y,X(0)+6,Y(y)+4)}}
+ t.strokeStyle=v("--axis");t.lineWidth=1.8;t.beginPath();t.moveTo(0,Y(0));t.lineTo(w,Y(0));t.moveTo(X(0),0);t.lineTo(X(0),h);t.stroke();
+ t.fillStyle=v("--ink");t.fillText("y",X(0)+8,14);t.fillText("x",w-12,Y(0)-8);
+ t.strokeStyle=v("--main");t.lineWidth=3.5;t.lineJoin="round";t.beginPath();let s=0;
+ for(let p=0;p<=w;p++){const x=x0+p/w*(x1-x0),y=f(x);if(y<y0-1||y>y1+1){s=0;continue}s?t.lineTo(p,Y(y)):t.moveTo(p,Y(y));s=1}t.stroke();
+ if(pts){t.fillStyle=v("--teal");pts.forEach(x=>{t.beginPath();t.arc(X(x),Y(f(x)),5,0,7);t.fill()})}
+}
+function sl(){
+ const ks=["a","b","c","d","e"],v=ks.map(k=>+$("s"+k).value),[a,b,c,d,e]=v,m=n=>String(n).replace("-","−"),q=n=>(n<0?"− ":"+ ")+Math.abs(n);
+ ks.forEach((k,i)=>{$("o"+k).textContent=m(v[i])});
+ $("fx2").textContent="f(x) = "+m(a)+"x⁴ "+q(b)+"x³ "+q(c)+"x² "+q(d)+"x "+q(e);
+ $("n2").textContent=a===0?"Con a = 0 desaparece el término x⁴: ya no es de cuarto grado.":(a>0?"a es positivo: los dos extremos de la curva suben.":"a es negativo: los dos extremos de la curva bajan.")+" Corta el eje vertical en y = "+m(e)+".";
+ plot("g2",x=>a*x**4+b*x**3+c*x*x+d*x+e,-3,3,-10,10,1,2);
+}
+function draw(){plot("g",x=>x**4-5*x*x+4,-2.6,2.6,-4,10,1,2,[-2,-1,0,1,2]);sl()}
+["sa","sb","sc","sd","se"].forEach(i=>{$(i).oninput=sl});
+addEventListener("resize",draw);addEventListener("load",draw);
+matchMedia("(prefers-color-scheme:dark)").addEventListener("change",draw);
+</script>
+</body>
+</html>
